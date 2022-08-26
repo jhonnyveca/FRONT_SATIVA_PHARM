@@ -48,7 +48,7 @@ const Sidebar = () => {
   return (
     <aside className='main-sidebar sidebar-dark-primary elevation-4'>
       {/* Brand Logo */}
-      <a href='/' className='brand-link'>
+      <Link to='/' className='brand-link'>
         <img
           src={logo}
           alt='Logo'
@@ -56,7 +56,7 @@ const Sidebar = () => {
           style={{ opacity: '.8' }}
         />
         <span className='brand-text font-weight-light'>Sativa Pharm</span>
-      </a>
+      </Link>
       {/* Sidebar */}
       <div className='sidebar'>
         {/* Sidebar user panel (optional) */}
