@@ -1,38 +1,69 @@
-.App {
-  text-align: center;
+/**   */
+.content-wrapper{
+  min-height: 800px !important;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+/** datatables PrimeReact */
+.datatable-crud-demo .table-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
+  @media screen and (max-width: 960px) {
+    .datatable-crud-demo .p-toolbar {
+        flex-wrap: wrap;
+    }
+    .datatable-crud-demo .p-toolbar .p-button {
+        margin-bottom: 0.25rem;
+    }
+    .datatable-crud-demo .table-header {
+        flex-direction: column;
+    }
+    .datatable-crud-demo .table-header .p-input-icon-left, .datatable-crud-demo .table-header input {
+        width: 100%;
+    }
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.user-badge {
+    border-radius: 2px;
+    padding: .25em .5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .3px;
   }
-  to {
-    transform: rotate(360deg);
+  .user-badge.status-instock {
+    background: #C8E6C9;
+    color: #256029;
   }
-}
+  .user-badge.status-outofstock {
+    background: #FFCDD2;
+    color: #C63737;
+  }
+  .label-modal{
+    font-size: 13px;
+  }
+  .patient-badge {
+    border-radius: 2px;
+    padding: .25em .5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .3px;
+  }
+  
+  .patient-badge.status-pago_consulta {
+    background: #C8E6C9;
+    color: #256029;
+  }
+  .patient-badge.status-agendado {
+    background: #FEEDAF ;
+    color: #8A5340;
+  }
+  .patient-badge.status-ninguno {
+    background: #bdbfc2 ;
+    color: #5C636A;
+  }
+  .patient-badge.status-no_pago {
+    background: #FFCDD2;
+    color: #C63737;
+  }

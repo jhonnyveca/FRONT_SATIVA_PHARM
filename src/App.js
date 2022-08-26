@@ -1,24 +1,42 @@
-import logo from './logo.svg';
 import './App.css';
+import 'primereact/resources/themes/lara-light-indigo/theme.css'; //theme
+import 'primereact/resources/primereact.min.css'; //core css
+import 'primereact/resources/primereact.css';
+import 'primeflex/primeflex.css';
+import 'primeicons/primeicons.css';
 
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import PageWrapper from './PageWrapper';
+import Login from './login/Login';
+import URI from './config/Api';
 function App() {
+  const [isLogin, setIsLogin] = useState(false);
+  const token = localStorage.getItem('token');
+  const id = localStorage.getItem('id');
+
+  useEffect(() => {
+    const checkLogin = async () => {
+      if (token) {
+        const verified = await axios.get(`${URI}/auth`, {
+          headers: { Authorization: token, Accept: id },
+        });
+        setIsLogin(verified.data);
+        if (verified.data === false) return localStorage.clear();
+      } else {
+        setIsLogin(false);
+      }
+    };
+    checkLogin();
+  }, [token, id]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {isLogin ? (
+        <PageWrapper setIsLogin={setIsLogin} />
+      ) : (
+        <Login setIsLogin={setIsLogin} />
+      )}
+    </>
   );
 }
 
