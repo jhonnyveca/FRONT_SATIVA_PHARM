@@ -65,7 +65,7 @@ const Navbar = ({ setIsLogin }) => {
               role='button'
               activeClassName='selected'
             >
-              <i className='pi pi-user' />
+              <i className='pi pi-user' style={{ fontWeight: 'bold' }} />
             </NavLink>
           </li>
           <li className='nav-item'>
@@ -79,7 +79,10 @@ const Navbar = ({ setIsLogin }) => {
                 marginRight: '5px',
               }}
             >
-              <i className='fas fa-expand-arrows-alt' />
+              <i
+                className='fas fa-expand-arrows-alt'
+                style={{ fontWeight: 'bold' }}
+              />
             </button>
           </li>
 
@@ -88,12 +91,13 @@ const Navbar = ({ setIsLogin }) => {
               className='nav-link'
               onClick={() => confirmaLogout()}
               style={{
-                borderRadius: '10%',
                 border: '0',
-                background: '#FFF',
+                color: 'red',
+                borderRadius: '0 1rem',
+                background: '#FFCDD2',
               }}
             >
-              <i className='pi pi-power-off' />
+              <i className='pi pi-power-off' style={{ fontWeight: 'bold' }} />
             </button>
           </li>
         </ul>

@@ -9,7 +9,6 @@ const PageWrapper = ({ setIsLogin }) => {
   return (
     <div className='wrapper'>
       <BrowserRouter>
-        {/* <Preloader /> */}
         <Navbar setIsLogin={setIsLogin} />
         <Sidebar />
         <Content />

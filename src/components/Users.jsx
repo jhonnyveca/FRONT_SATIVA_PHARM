@@ -166,9 +166,14 @@ const Users = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire(
-          '¡Eliminado!',
-          'Su archivo ha sido eliminado.',
-          'success',
+          {
+            position: 'center',
+            title: '¡Eliminado!',
+            text: 'El usuario ha sido eliminado.',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1500,
+          },
           deleteUser(id)
         );
       }
@@ -226,7 +231,7 @@ const Users = () => {
     return (
       <React.Fragment>
         <Button
-          label='Nuevo'
+          label='Registrar usuario'
           icon='pi pi-plus'
           className='p-button-sm'
           onClick={openNew}
@@ -269,76 +274,72 @@ const Users = () => {
             <div className='card-body'>
               <div className='datatable-crud-demo'>
                 <Toast ref={toast} position='bottom-right' />
-                <div className='card'>
-                  <Toolbar
-                    className='mb-4'
-                    left={leftToolbarTemplate}
-                  ></Toolbar>
-                  <DataTable
-                    ref={dt}
-                    value={datos}
-                    dataKey='id'
-                    paginator
-                    rows={5}
-                    showGridlines
-                    stripedRows
-                    rowsPerPageOptions={[5, 10, 25]}
-                    paginatorTemplate='FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown'
-                    currentPageReportTemplate='Mostrando del {first} al {last} de un total de {totalRecords} usuarios'
-                    globalFilter={globalFilter}
-                    header={header}
-                    className='datastyle'
-                    emptyMessage='No se encontraron usuarios.'
-                    responsiveLayout='stack'
-                    breakpoint='960px'
-                    size='small'
-                    lazy
-                  >
-                    <Column
-                      field='dni'
-                      header='DNI'
-                      style={{ minWidth: '1rem' }}
-                    ></Column>
-                    <Column
-                      field='firstname'
-                      header='Nombre'
-                      style={{ minWidth: '1rem' }}
-                    ></Column>
-                    <Column
-                      field='lastname1'
-                      header='Apellido'
-                      style={{ minWidth: '1rem' }}
-                    ></Column>
-                    <Column
-                      field='role.role_name'
-                      header='Rol'
-                      style={{ minWidth: '1rem' }}
-                    ></Column>
-                    <Column
-                      field='status'
-                      header='Estado'
-                      body={statusBodyTemplate}
-                      style={{ minWidth: '1rem' }}
-                    ></Column>
-                    <Column
-                      header='Acciones'
-                      body={actionBodyTemplate}
-                      exportable={false}
-                      style={{ minWidth: '1rem' }}
-                    ></Column>
-                  </DataTable>
-                  <UserModal
-                    editar={editar}
-                    user={user}
-                    URL={URL}
-                    error={error}
-                    userDialog={userDialog}
-                    hideDialog={hideDialog}
-                    submitted={submitted}
-                    onInputChange={onInputChange}
-                    userDialogFooter={userDialogFooter}
-                  />
-                </div>
+                {/* <div className='card'> */}
+                <Toolbar className='mb-3' left={leftToolbarTemplate}></Toolbar>
+                <DataTable
+                  ref={dt}
+                  value={datos}
+                  dataKey='id'
+                  paginator
+                  rows={8}
+                  showGridlines
+                  stripedRows
+                  rowsPerPageOptions={[8, 16, 64]}
+                  paginatorTemplate='FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown'
+                  currentPageReportTemplate='Mostrando del {first} al {last} de un total de {totalRecords} usuarios'
+                  globalFilter={globalFilter}
+                  header={header}
+                  className='datastyle'
+                  emptyMessage='No se encontraron usuarios.'
+                  responsiveLayout='stack'
+                  breakpoint='960px'
+                  size='small'
+                >
+                  <Column
+                    field='dni'
+                    header='DNI'
+                    style={{ minWidth: '1rem' }}
+                  ></Column>
+                  <Column
+                    field='firstname'
+                    header='Nombre'
+                    style={{ minWidth: '1rem' }}
+                  ></Column>
+                  <Column
+                    field='lastname1'
+                    header='Apellido'
+                    style={{ minWidth: '1rem' }}
+                  ></Column>
+                  <Column
+                    field='role.role_name'
+                    header='Rol'
+                    style={{ minWidth: '1rem' }}
+                  ></Column>
+                  <Column
+                    field='status'
+                    header='Estado'
+                    body={statusBodyTemplate}
+                    style={{ minWidth: '1rem' }}
+                  ></Column>
+                  <Column
+                    header='Acciones'
+                    body={actionBodyTemplate}
+                    exportable={false}
+                    style={{ minWidth: '1rem' }}
+                  ></Column>
+                </DataTable>
+                <UserModal
+                  editar={editar}
+                  user={user}
+                  URL={URL}
+                  error={error}
+                  userDialog={userDialog}
+                  hideDialog={hideDialog}
+                  submitted={submitted}
+                  onInputChange={onInputChange}
+                  userDialogFooter={userDialogFooter}
+                />
+                {/*   </div> */}
               </div>
             </div>
           </div>

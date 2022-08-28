@@ -9,6 +9,8 @@ import Users from '../components/Users';
 import URI from '../config/Api';
 import axios from 'axios';
 import Alert from '../components/Alert';
+import Preloader from './Preloader';
+
 const Content = () => {
   const baseUrl = `${URI}/users`;
   const idUser = localStorage.getItem('id');
@@ -55,10 +57,12 @@ const Content = () => {
     },
   ];
   let admin = useRoutes(routes);
-  let others = useRoutes(routes.splice(2, 4));
+  let others = useRoutes(routes.splice(2, 5));
 
   return (
-    <div className='content-wrapper'>{user === 'ADMIN' ? admin : others}</div>
+    <div className='content-wrapper'>
+      {user === '' ? <Preloader /> : <>{user === 'ADMIN' ? admin : others}</>}
+    </div>
   );
 };
 
