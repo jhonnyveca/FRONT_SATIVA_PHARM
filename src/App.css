@@ -115,9 +115,13 @@ box-shadow: none;
 /* //TODO:  Active nav porfile*/
 .navbar-light .navbar-nav .nav-link.active{
   background-color: #6365f157;
-  border-radius:8px;
+  border-radius:0 1rem;
 }
-
+/* //TODO: Background Header Dialog */
+.p-dialog-header{
+  background-color: #f4f6f9 !important;
+}
+/* //TODO: Siderbar responsive */
   @media screen and (max-width: 992px){
     .main-sidebar{
       top: 0 !important;
