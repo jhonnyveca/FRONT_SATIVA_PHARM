@@ -58,7 +58,7 @@ const UserModal = (props) => {
         visible={props.userDialog}
         style={{ width: '55vw' }}
         breakpoints={{ '960px': '95vw' }}
-        header={props.editar ? 'Editar Usuario' : 'Agregar Usuario'}
+        header={props.editar ? 'Editar Usuario' : 'Registrar usuario'}
         modal
         className='p-fluid'
         footer={props.userDialogFooter}

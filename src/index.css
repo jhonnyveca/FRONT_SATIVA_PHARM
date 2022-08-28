@@ -14,3 +14,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/* //TODO: Oculta el scroll en todo el sistema */
+::-webkit-scrollbar {
+  display: none;
+}

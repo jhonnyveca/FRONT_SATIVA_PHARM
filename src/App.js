@@ -10,8 +10,9 @@ import axios from 'axios';
 import PageWrapper from './PageWrapper';
 import Login from './login/Login';
 import URI from './config/Api';
-function App() {
-  const [isLogin, setIsLogin] = useState(false);
+
+const App = ({ getToken }) => {
+  const [isLogin, setIsLogin] = useState(getToken);
   const token = localStorage.getItem('token');
   const id = localStorage.getItem('id');
 
@@ -38,6 +39,6 @@ function App() {
       )}
     </>
   );
-}
+};
 
 export default App;

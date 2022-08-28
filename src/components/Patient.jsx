@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 
 const Patient = () => {
   const baseUrl = `${URL}/patients`;
+
   let emptyPatient = {
     pat_dni: '',
     pat_firstname: '',
@@ -103,17 +104,19 @@ const Patient = () => {
       }
     }
   };
+
   //TODO: Set Data Patient by Id */
   const setDataPatient = async (id, index) => {
     const respuesta = await axios.get(`${baseUrl}/${id}`, {
       headers: { Authorization: token },
     });
+
     setPatient({
       pat_dni: respuesta.data.pat_dni,
       pat_firstname: respuesta.data.pat_firstname,
       pat_lastname1: respuesta.data.pat_lastname1,
       pat_lastname2: respuesta.data.pat_lastname2,
-      pat_fec_nac: respuesta.data.pat_fec_nac,
+      pat_fec_nac: new Date(respuesta.data.pat_fec_nac),
       pat_edad: respuesta.data.pat_edad,
       pat_peso: respuesta.data.pat_peso,
       pat_direc: respuesta.data.pat_direc,
@@ -169,9 +172,14 @@ const Patient = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire(
-          '¡Eliminado!',
-          'Su archivo ha sido eliminado.',
-          'success',
+          {
+            position: 'center',
+            title: '¡Eliminado!',
+            text: 'El paciente ha sido eliminado.',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1500,
+          },
           deletePatient(id)
         );
       }
@@ -255,7 +263,7 @@ const Patient = () => {
     return (
       <React.Fragment>
         <Button
-          label='Agregar'
+          label='Registrar paciente'
           icon='pi pi-plus'
           className='p-button-sm'
           onClick={openNew}
@@ -309,10 +317,10 @@ const Patient = () => {
                     value={datos}
                     dataKey='id'
                     paginator
-                    rows={5}
+                    rows={8}
                     showGridlines
                     stripedRows
-                    rowsPerPageOptions={[5, 10, 25]}
+                    rowsPerPageOptions={[8, 16, 64]}
                     paginatorTemplate='FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown'
                     currentPageReportTemplate='Mostrando del {first} al {last} de un total de {totalRecords} pacientes'
                     globalFilter={globalFilter}

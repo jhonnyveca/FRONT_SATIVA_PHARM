@@ -1,10 +1,13 @@
-import React from 'react';
-import { classNames } from 'primereact/utils';
+import React, { useEffect } from 'react';
+/* import { classNames } from 'primereact/utils'; */
 import { Dropdown } from 'primereact/dropdown';
 import { InputText } from 'primereact/inputtext';
 import { Calendar } from 'primereact/calendar';
 import { TabView, TabPanel } from 'primereact/tabview';
 import { Dialog } from 'primereact/dialog';
+
+import { locale, addLocale } from 'primereact/api';
+
 const PatientModal = (props) => {
   const owners = [
     { value: 'Calm' },
@@ -17,16 +20,64 @@ const PatientModal = (props) => {
     { value: 'Red de Mercadeo' },
   ];
   const statusData = [
-    { status: 'Ninguno', value: 'NINGUNO' },
-    { status: 'No Pago', value: 'NO_PAGO' },
-    { status: 'Pago consulta', value: 'PAGO_CONSULTA' },
-    { status: 'Agendado', value: 'AGENDADO' },
+    { pat_status: 'Ninguno', value: 'NINGUNO' },
+    { pat_status: 'No Pago', value: 'NO_PAGO' },
+    { pat_status: 'Pago consulta', value: 'PAGO_CONSULTA' },
+    { pat_status: 'Agendado', value: 'AGENDADO' },
   ];
+  addLocale('es', {
+    firstDayOfWeek: 1,
+    dayNames: [
+      'domingo',
+      'lunes',
+      'martes',
+      'miércoles',
+      'jueves',
+      'viernes',
+      'sábado',
+    ],
+    dayNamesShort: ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'],
+    dayNamesMin: ['DO', 'LU', 'MA', 'MI', 'JU', 'VI', 'SA'],
+    monthNames: [
+      'Enero',
+      'Febrero',
+      'Marzo',
+      'Abril',
+      'Mayo',
+      'Junio',
+      'Julio',
+      'Agosto',
+      'Septiembre',
+      'Octubre',
+      'Noviembre',
+      'Diciembre',
+    ],
+    monthNamesShort: [
+      'ene',
+      'feb',
+      'mar',
+      'abr',
+      'may',
+      'jun',
+      'jul',
+      'ago',
+      'sep',
+      'oct',
+      'nov',
+      'dic',
+    ],
+    today: 'Hoy',
+    clear: 'Limpiar',
+  });
+  useEffect(() => {
+    locale('es');
+  }, []);
+
   const selectedStatusTemplate = (option, props) => {
     if (option) {
       return (
         <div className='country-item country-item-value'>
-          <div>{option.status}</div>
+          <div>{option.pat_status}</div>
         </div>
       );
     }
@@ -35,7 +86,7 @@ const PatientModal = (props) => {
   const statusOptionTemplate = (option) => {
     return (
       <div className='country-item'>
-        <div>{option.status}</div>
+        <div>{option.pat_status}</div>
       </div>
     );
   };
@@ -60,9 +111,9 @@ const PatientModal = (props) => {
     <div>
       <Dialog
         visible={props.patientDialog}
-        style={{ width: '70vw' }}
+        style={{ width: '72vw' }}
         breakpoints={{ '960px': '95vw' }}
-        header={props.editar ? 'Editar Paciente' : 'Nuevo Paciente'}
+        header={props.editar ? 'Editar Paciente' : 'Registrar Paciente'}
         modal
         className='p-fluid'
         footer={props.patientDialogFooter}
@@ -115,7 +166,7 @@ const PatientModal = (props) => {
                   keyfilter='alpha'
                 />
               </div>
-              <div className='col-12 md:col-3'>
+              <div className='col-12 md:col-6'>
                 <label className='label-modal' htmlFor='pat_lastname1'>
                   Apellido Pater.
                 </label>
@@ -128,7 +179,9 @@ const PatientModal = (props) => {
                   keyfilter='alpha'
                 />
               </div>
-              <div className='col-12 md:col-3'>
+            </div>
+            <div className='grid p-fluid mt-1'>
+              <div className='col-12 md:col-6'>
                 <label className='label-modal' htmlFor='pat_lastname2'>
                   Apellido Mater.
                 </label>
@@ -141,9 +194,7 @@ const PatientModal = (props) => {
                   keyfilter='alpha'
                 />
               </div>
-            </div>
-            <div className='grid p-fluid mt-1'>
-              <div className='col-12 md:col-3'>
+              <div className='col-12 md:col-6'>
                 <label className='label-modal' htmlFor='pat_fecha_nac'>
                   Fecha de nacimiento
                 </label>
@@ -152,8 +203,11 @@ const PatientModal = (props) => {
                   value={props.patient.pat_fec_nac}
                   onChange={(e) => props.onInputChange(e, 'pat_fec_nac')}
                   dateFormat='dd/mm/yy'
+                  onClick={() => locale()}
                 />
               </div>
+            </div>
+            <div className='grid p-fluid mt-1'>
               <div className='col-12 md:col-3'>
                 <label className='label-modal' htmlFor='edad'>
                   Edad
@@ -180,7 +234,7 @@ const PatientModal = (props) => {
                   keyfilter='num'
                 />
               </div>
-              <div className='col-12 md:col-3'>
+              <div className='col-12 md:col-6'>
                 <label className='label-modal' htmlFor='dni'>
                   Direccion
                 </label>
@@ -194,6 +248,7 @@ const PatientModal = (props) => {
                 />
               </div>
             </div>
+
             <div className='grid p-fluid mt-1'>
               <div className='col-12 md:col-3'>
                 <label className='label-modal' htmlFor='pat_depart'>
@@ -248,9 +303,6 @@ const PatientModal = (props) => {
                   placeholder='Seleccione un estado'
                   valueTemplate={selectedStatusTemplate}
                   itemTemplate={statusOptionTemplate}
-                  className={classNames({
-                    'p-invalid': props.submitted && !props.user.status,
-                  })}
                 />
               </div>
             </div>
@@ -266,7 +318,6 @@ const PatientModal = (props) => {
                   id='resp_dni'
                   value={props.patient.resp_dni}
                   onChange={(e) => props.onInputChange(e, 'resp_dni')}
-                  required
                   autoFocus
                   autoComplete='off'
                   keyfilter='int'
@@ -280,7 +331,6 @@ const PatientModal = (props) => {
                   id='resp_name'
                   value={props.patient.resp_name}
                   onChange={(e) => props.onInputChange(e, 'resp_name')}
-                  required
                   autoComplete='off'
                   keyfilter='alpha'
                 />
@@ -293,7 +343,6 @@ const PatientModal = (props) => {
                   id='resp_lastnames'
                   value={props.patient.resp_lastnames}
                   onChange={(e) => props.onInputChange(e, 'resp_lastnames')}
-                  required
                   autoComplete='off'
                   keyfilter='alpha'
                 />
@@ -306,7 +355,6 @@ const PatientModal = (props) => {
                   id='resp_phone'
                   value={props.patient.resp_phone}
                   onChange={(e) => props.onInputChange(e, 'resp_phone')}
-                  required
                   autoComplete='off'
                   keyfilter='int'
                 />
@@ -321,7 +369,6 @@ const PatientModal = (props) => {
                   id='resp_email'
                   value={props.patient.resp_email}
                   onChange={(e) => props.onInputChange(e, 'resp_email')}
-                  required
                   autoComplete='off'
                 />
               </div>
@@ -333,7 +380,6 @@ const PatientModal = (props) => {
                   id='resp_parent'
                   value={props.patient.resp_parent}
                   onChange={(e) => props.onInputChange(e, 'resp_parent')}
-                  required
                   autoComplete='off'
                   keyfilter='alpha'
                 />
