@@ -12,7 +12,7 @@ const AgendaModal = (props) => {
       <Dialog
         visible={props.agendaDialog}
         style={{ width: '650px' }}
-        breakpoints={{ '960px': '90vw' }}
+        breakpoints={{ '960px': '95vw' }}
         header={'Nuevo turno'}
         modal
         className='p-fluid'

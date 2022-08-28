@@ -61,7 +61,7 @@ const PatientModal = (props) => {
       <Dialog
         visible={props.patientDialog}
         style={{ width: '70vw' }}
-        breakpoints={{ '960px': '75vw' }}
+        breakpoints={{ '960px': '95vw' }}
         header={props.editar ? 'Editar Paciente' : 'Nuevo Paciente'}
         modal
         className='p-fluid'
