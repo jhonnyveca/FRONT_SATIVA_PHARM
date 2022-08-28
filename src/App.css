@@ -129,18 +129,16 @@ box-shadow: none;
   /* //TODO: Responsive Dialog */
   @media screen and (max-width: 450px){
     .p-dialog{
-    width: 95%!important;
+    width: 95vw !important;
    }
  }
   @media screen and (max-width: 540px){
      .p-dialog{
-     width: 95%!important;
-    
+     width: 95vw !important;
     }
   }
   @media screen and (max-width: 960px){
     .p-dialog{
-    width: 95%!important;
-   
+    width: 95vw !important;
    }
  }
