@@ -162,7 +162,7 @@ const Patient = () => {
       text: '¡No podrás revertir esto!',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#EF4444',
+      confirmButtonColor: '#6366F1',
       cancelButtonColor: '#64748B',
       confirmButtonText: '<i class="pi pi-check"></i> Sí',
       cancelButtonText: '<i class="pi pi-times"></i> Cancelar',
@@ -265,41 +265,36 @@ const Patient = () => {
   };
   const patientDialogFooter = (
     <React.Fragment>
+      <Button
+        label='Cancel'
+        icon='pi pi-times'
+        className='p-button-outlined p-button-secondary'
+        onClick={hideDialog}
+      />
       {editar ? (
         <Button
           label='Actualizar'
           icon='pi pi-check'
-          className='p-button-outlined p-button-warning'
+          className='p-button-primary'
           onClick={editPatient}
         />
       ) : (
         <Button
           label='Agregar'
           icon='pi pi-check'
-          className='p-button-outlined p-button-success'
+          className='p-button-primary'
           onClick={addPatient}
         />
       )}
-      <Button
-        label='Cancel'
-        icon='pi pi-times'
-        className='p-button-secondary'
-        onClick={hideDialog}
-      />
     </React.Fragment>
   );
   return (
     <div>
       {/* Main content */}
-      <section className='content'>
+      <section className='content mx-1'>
         {/* Default box */}
         <div className='container-fluid'>
           <div className='card'>
-            <div className='row'>
-              <div className='col-sm-6 ml-4 mt-3'>
-                <h1>Modulo de Pacientes</h1>
-              </div>
-            </div>
             <div className='card-body'>
               <div className='datatable-crud-demo'>
                 <Toast ref={toast} position='bottom-right' />

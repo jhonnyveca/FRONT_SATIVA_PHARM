@@ -102,7 +102,6 @@ const Users = () => {
     const respuesta = await axios.get(`${baseUrl}/${id}`, {
       headers: { Authorization: token },
     });
-
     setUser({
       dni: respuesta.data.dni,
       firstname: respuesta.data.firstname,
@@ -160,7 +159,7 @@ const Users = () => {
       text: '¡No podrás revertir esto!',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#EF4444',
+      confirmButtonColor: '#6366F1',
       cancelButtonColor: '#64748B',
       confirmButtonText: '<i class="pi pi-check"></i> Sí',
       cancelButtonText: '<i class="pi pi-times"></i> Cancelar',
@@ -237,41 +236,36 @@ const Users = () => {
   };
   const userDialogFooter = (
     <React.Fragment>
+      <Button
+        label='Cancelar'
+        icon='pi pi-times'
+        className='p-button-outlined p-button-secondary'
+        onClick={hideDialog}
+      />
       {editar ? (
         <Button
           label='Actualizar'
           icon='pi pi-check'
-          className='p-button-outlined p-button-warning'
+          className='p-button'
           onClick={editUser}
         />
       ) : (
         <Button
           label='Agregar'
           icon='pi pi-check'
-          className='p-button-outlined p-button-success'
+          className='p-button'
           onClick={addUser}
         />
       )}
-      <Button
-        label='Cancel'
-        icon='pi pi-times'
-        className='p-button-secondary'
-        onClick={hideDialog}
-      />
     </React.Fragment>
   );
   return (
     <div>
       {/* Main content */}
-      <section className='content'>
+      <section className='content mx-1'>
         {/* Default box */}
         <div className='container-fluid'>
           <div className='card'>
-            <div className='row'>
-              <div className='col-sm-6 ml-4 mt-3'>
-                <h1>Modulo de Usuarios</h1>
-              </div>
-            </div>
             <div className='card-body'>
               <div className='datatable-crud-demo'>
                 <Toast ref={toast} position='bottom-right' />
@@ -298,6 +292,7 @@ const Users = () => {
                     responsiveLayout='stack'
                     breakpoint='960px'
                     size='small'
+                    lazy
                   >
                     <Column
                       field='dni'

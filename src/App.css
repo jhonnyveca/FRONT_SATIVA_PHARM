@@ -67,3 +67,80 @@
     background: #FFCDD2;
     color: #C63737;
   }
+/* TODO: Cambios en los estilos del tema. */
+  .fc-toolbar-title{
+    text-transform: uppercase;
+    color: #6366F1;
+  }
+  .fc-daygrid-day-number, .fc-col-header-cell-cushion {
+    color: #343a40;
+  }
+  .fc .fc-daygrid-day.fc-day-today{
+    background-color: #6365f157 !important;
+   
+  }
+  .sidebar a{
+    color: black !important;
+    font-weight: 500;
+  }
+  .brand-text{
+    color: black;
+    text-transform: uppercase;
+    font-weight:bold;
+  }
+  .main-sidebar{
+    background-color: #ffffff;
+    border-radius: 4px;
+    top: 5rem!important;
+  }
+  .wrapper{
+    background-color:#f4f6f9;
+  }
+  .layout-navbar-fixed.layout-fixed .wrapper .sidebar{
+        margin-top: 0;
+  }
+  .navbar-light {
+    background-color: #ffffff;
+}
+
+.dahsboard__body{
+  padding-top: 0!important;
+}
+
+/* //TODO: Active Siderbar*/
+.sidebar-light-primary .nav-sidebar .nav-item .nav-link.active{
+background-color: #6365f157;
+box-shadow: none;
+}
+/* //TODO:  Active nav porfile*/
+.navbar-light .navbar-nav .nav-link.active{
+  background-color: #6365f157;
+  border-radius:8px;
+}
+
+  @media screen and (max-width: 992px){
+    .main-sidebar{
+      top: 0 !important;
+    }
+    .layout-navbar-fixed.layout-fixed .wrapper .sidebar{
+      margin-top: calc(3.5rem + 1px);
+}
+  }
+  /* //TODO: Responsive Dialog */
+  @media screen and (max-width: 450px){
+    .p-dialog{
+    width: 95%!important;
+   }
+ }
+  @media screen and (max-width: 540px){
+     .p-dialog{
+     width: 95%!important;
+    
+    }
+  }
+  @media screen and (max-width: 960px){
+    .p-dialog{
+    width: 95%!important;
+   
+   }
+ }
