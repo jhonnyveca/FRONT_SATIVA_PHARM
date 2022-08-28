@@ -3,7 +3,7 @@ import { classNames } from 'primereact/utils';
 import { Dropdown } from 'primereact/dropdown';
 import { InputText } from 'primereact/inputtext';
 import { Calendar } from 'primereact/calendar';
-import { Accordion, AccordionTab } from 'primereact/accordion';
+import { TabView, TabPanel } from 'primereact/tabview';
 import { Dialog } from 'primereact/dialog';
 const PatientModal = (props) => {
   const owners = [
@@ -60,16 +60,16 @@ const PatientModal = (props) => {
     <div>
       <Dialog
         visible={props.patientDialog}
-        style={{ width: '1150px' }}
-        breakpoints={{ '960px': '90vw' }}
-        header={props.editar ? 'Editar Paciente' : 'Agregar Nuevo Paciente'}
+        style={{ width: '70vw' }}
+        breakpoints={{ '960px': '95vw' }}
+        header={props.editar ? 'Editar Paciente' : 'Nuevo Paciente'}
         modal
         className='p-fluid'
         footer={props.patientDialogFooter}
         onHide={props.hideDialog}
       >
-        <Accordion activeIndex={1}>
-          <AccordionTab header='Owner'>
+        <TabView>
+          <TabPanel header='Owner'>
             <div className='grid p-fluid'>
               <div className='col-12 md:col-4'>
                 <Dropdown
@@ -85,10 +85,8 @@ const PatientModal = (props) => {
                 />
               </div>
             </div>
-          </AccordionTab>
-        </Accordion>
-        <Accordion activeIndex={1}>
-          <AccordionTab header='Datos del Paciente'>
+          </TabPanel>
+          <TabPanel header='Paciente'>
             <div className='grid p-fluid'>
               <div className='col-12 md:col-3'>
                 <label className='label-modal' htmlFor='dni'>
@@ -236,34 +234,29 @@ const PatientModal = (props) => {
                   keyfilter='alpha'
                 />
               </div>
-              {props.editar && props.patient.pat_status !== 'PAGO_CONSULTA' ? (
-                <div className='col-12 md:col-3'>
-                  <label className='label-modal' htmlFor='dni'>
-                    Estado
-                  </label>
-                  <Dropdown
-                    value={props.patient.pat_status}
-                    options={statusData}
-                    onChange={(e) => props.onInputChange(e, 'pat_status')}
-                    optionLabel='value'
-                    showClear
-                    placeholder='Seleccione un estado'
-                    valueTemplate={selectedStatusTemplate}
-                    itemTemplate={statusOptionTemplate}
-                    className={classNames({
-                      'p-invalid': props.submitted && !props.user.status,
-                    })}
-                  />
-                </div>
-              ) : (
-                <>{''}</>
-              )}
-            </div>
-          </AccordionTab>
-        </Accordion>
 
-        <Accordion activeIndex={1}>
-          <AccordionTab header='Responsable'>
+              <div className='col-12 md:col-3'>
+                <label className='label-modal' htmlFor='dni'>
+                  Estado
+                </label>
+                <Dropdown
+                  value={props.patient.pat_status}
+                  options={statusData}
+                  onChange={(e) => props.onInputChange(e, 'pat_status')}
+                  optionLabel='value'
+                  showClear
+                  placeholder='Seleccione un estado'
+                  valueTemplate={selectedStatusTemplate}
+                  itemTemplate={statusOptionTemplate}
+                  className={classNames({
+                    'p-invalid': props.submitted && !props.user.status,
+                  })}
+                />
+              </div>
+            </div>
+          </TabPanel>
+
+          <TabPanel header='Responsable'>
             <div className='grid p-fluid'>
               <div className='col-12 md:col-3'>
                 <label className='label-modal' htmlFor='resp_dni'>
@@ -346,8 +339,8 @@ const PatientModal = (props) => {
                 />
               </div>
             </div>
-          </AccordionTab>
-        </Accordion>
+          </TabPanel>
+        </TabView>
       </Dialog>
     </div>
   );

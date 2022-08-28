@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import logo from '../assets/logo-white.svg';
-import { Link } from 'react-router-dom';
+import logo from '../assets/logo-dark.svg';
+import { Link, NavLink } from 'react-router-dom';
 
 import axios from 'axios';
 import URI from '../config/Api';
@@ -46,17 +46,17 @@ const Sidebar = () => {
   ];
 
   return (
-    <aside className='main-sidebar sidebar-dark-primary elevation-4'>
+    <aside className='main-sidebar sidebar-light-primary elevation-2'>
       {/* Brand Logo */}
-      <a href='/' className='brand-link'>
+      <Link to='/' className='brand-link'>
         <img
           src={logo}
           alt='Logo'
           className='brand-image img-circle elevation-0'
           style={{ opacity: '.8' }}
         />
-        <span className='brand-text font-weight-light'>Sativa Pharm</span>
-      </a>
+        <span className='brand-text'>Sativa Pharm</span>
+      </Link>
       {/* Sidebar */}
       <div className='sidebar'>
         {/* Sidebar user panel (optional) */}
@@ -75,23 +75,31 @@ const Sidebar = () => {
               <>
                 {modules.map((item, index) => (
                   <li className='nav-item' key={index}>
-                    <Link to={item.page} className='nav-link'>
+                    <NavLink
+                      to={item.page}
+                      className='nav-link'
+                      activeClassName='selected'
+                    >
                       <i className={`nav-icon pi pi-${item.icon}`} />
                       <p>{item.title}</p>
-                    </Link>
+                    </NavLink>
                   </li>
                 ))}
               </>
             ) : user === '' ? (
-              <></>
+              <>Cargando...</>
             ) : (
               <>
                 {modules.splice(2, 2).map((item, index) => (
                   <li className='nav-item' key={index}>
-                    <Link to={item.page} className='nav-link'>
+                    <NavLink
+                      to={item.page}
+                      className='nav-link'
+                      activeClassName='selected'
+                    >
                       <i className={`nav-icon pi pi-${item.icon}`} />
                       <p>{item.title}</p>
-                    </Link>
+                    </NavLink>
                   </li>
                 ))}
               </>
