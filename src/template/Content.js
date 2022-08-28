@@ -8,6 +8,7 @@ import Profile from '../components/Profile';
 import Users from '../components/Users';
 import URI from '../config/Api';
 import axios from 'axios';
+import Alert from '../components/Alert';
 const Content = () => {
   const baseUrl = `${URI}/users`;
   const idUser = localStorage.getItem('id');
@@ -47,6 +48,10 @@ const Content = () => {
     {
       path: '/patient',
       element: <Patient />,
+    },
+    {
+      path: '/alert',
+      element: <Alert />,
     },
   ];
   let admin = useRoutes(routes);

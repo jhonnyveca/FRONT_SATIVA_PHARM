@@ -1,6 +1,7 @@
 import React from 'react';
+import { Badge } from 'primereact/badge';
 import Swal from 'sweetalert2';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 const Navbar = ({ setIsLogin }) => {
   const handleLogout = () => {
     window.history.pushState(null, null, '/');
@@ -15,8 +16,8 @@ const Navbar = ({ setIsLogin }) => {
       title: '¿Desea cerrar sesion?',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#6366F1',
+      cancelButtonColor: '#64748B',
       confirmButtonText: 'Sí',
     }).then((result) => {
       if (result.isConfirmed) {
@@ -43,28 +44,29 @@ const Navbar = ({ setIsLogin }) => {
         {/* Right navbar links */}
         <ul className='navbar-nav ml-auto'>
           {/* Notifications Dropdown Menu */}
-          <li className='nav-item dropdown'>
-            <a className='nav-link' data-toggle='dropdown' href='/#'>
-              <i className='far fa-bell' />
-              <span className='badge badge-warning navbar-badge'>15</span>
-            </a>
-            <div className='dropdown-menu dropdown-menu-lg dropdown-menu-right'>
-              <div className='dropdown-divider' />
-              <a href='/#' className='dropdown-item'>
-                <i className='fas fa-envelope mr-2' /> 4 new messages
-                <span className='float-right text-muted text-sm'>3 mins</span>
-              </a>
-
-              <div className='dropdown-divider' />
-              <a href='/#' className='dropdown-item dropdown-footer'>
-                See All Notifications
-              </a>
-            </div>
+          <li className='nav-item'>
+            <NavLink
+              className='nav-link'
+              to='/alert'
+              activeClassName='selected'
+            >
+              <i
+                className='pi pi-bell p-text-secondary p-overlay-badge'
+                style={{ fontSize: '1.4rem' }}
+              >
+                <Badge value='2'></Badge>
+              </i>
+            </NavLink>
           </li>
           <li className='nav-item'>
-            <Link className='nav-link' to='/' role='button'>
+            <NavLink
+              className='nav-link'
+              to='/'
+              role='button'
+              activeClassName='selected'
+            >
               <i className='pi pi-user' />
-            </Link>
+            </NavLink>
           </li>
           <li className='nav-item'>
             <button
@@ -73,8 +75,7 @@ const Navbar = ({ setIsLogin }) => {
               style={{
                 borderRadius: '10%',
                 border: '0',
-                background: '#343A40',
-                color: '#FFF',
+                background: '#FFF',
                 marginRight: '5px',
               }}
             >
@@ -84,13 +85,12 @@ const Navbar = ({ setIsLogin }) => {
 
           <li className='nav-item'>
             <button
-              className='nav-link '
+              className='nav-link'
               onClick={() => confirmaLogout()}
               style={{
                 borderRadius: '10%',
                 border: '0',
-                background: '#343A40',
-                color: '#FFF',
+                background: '#FFF',
               }}
             >
               <i className='pi pi-power-off' />

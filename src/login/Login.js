@@ -20,6 +20,7 @@ const Login = ({ setIsLogin }) => {
       const { data: res } = await axios.post(urlLogin, data);
       localStorage.setItem('token', res.token);
       localStorage.setItem('id', res.idUser);
+      /* window.location.refresh(); */
       setIsLogin(true);
     } catch (error) {
       if (
