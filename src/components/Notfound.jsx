@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Notfound = () => {
+const Notfound = ({ setIsLogin }) => {
   return <div>Pagina no encontrada.</div>;
 };
 

@@ -15,7 +15,6 @@ const Sidebar = () => {
     const respuesta = await axios.get(`${baseUrl}/${idUser}`, {
       headers: { Authorization: token },
     });
-
     setUser(respuesta.data.role.role_type);
   };
   useEffect(() => {
@@ -75,11 +74,7 @@ const Sidebar = () => {
               <>
                 {modules.map((item, index) => (
                   <li className='nav-item' key={index}>
-                    <NavLink
-                      to={item.page}
-                      className='nav-link'
-                      activeClassName='selected'
-                    >
+                    <NavLink to={item.page} className='nav-link'>
                       <i className={`nav-icon pi pi-${item.icon}`} />
                       <p>{item.title}</p>
                     </NavLink>
@@ -92,11 +87,7 @@ const Sidebar = () => {
               <>
                 {modules.splice(2, 2).map((item, index) => (
                   <li className='nav-item' key={index}>
-                    <NavLink
-                      to={item.page}
-                      className='nav-link'
-                      activeClassName='selected'
-                    >
+                    <NavLink to={item.page} className='nav-link'>
                       <i className={`nav-icon pi pi-${item.icon}`} />
                       <p>{item.title}</p>
                     </NavLink>

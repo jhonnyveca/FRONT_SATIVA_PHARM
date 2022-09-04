@@ -6,12 +6,12 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
-
 import { InputText } from 'primereact/inputtext';
+import AlertChanges from '../template/Navbar';
 import URL from '../config/Api';
 import UserModal from './modals/UserModal';
 
-const Users = () => {
+const Users = ({ setIsLogin }) => {
   const baseUrl = `${URL}/users`;
   let emptyUser = {
     dni: '',
@@ -339,7 +339,7 @@ const Users = () => {
                   onInputChange={onInputChange}
                   userDialogFooter={userDialogFooter}
                 />
-                {/*   </div> */}
+                <AlertChanges key={'0'} setIsLogin={setIsLogin} />
               </div>
             </div>
           </div>
