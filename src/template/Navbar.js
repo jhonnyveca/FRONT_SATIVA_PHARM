@@ -1,15 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Badge } from 'primereact/badge';
 import Swal from 'sweetalert2';
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
+import URL from '../config/Api';
+
 const Navbar = ({ setIsLogin }) => {
-  const handleLogout = () => {
+  const baseUrl = `${URL}/alerts`;
+  const [badge, setBadge] = useState(0);
+  const cargarBadges = async () => {
+    const badges = await axios.get(`${baseUrl}/count`);
+    setBadge(badges.data);
+  };
+  useEffect(() => {
+    cargarBadges();
+  });
+
+  const handleLogout = (e) => {
     window.history.pushState(null, null, '/');
     window.onpopstate = function (e) {
       window.history.go(1);
     };
-    localStorage.clear();
     setIsLogin(false);
+    localStorage.clear();
   };
   const confirmaLogout = () => {
     Swal.fire({
@@ -45,26 +58,17 @@ const Navbar = ({ setIsLogin }) => {
         <ul className='navbar-nav ml-auto'>
           {/* Notifications Dropdown Menu */}
           <li className='nav-item'>
-            <NavLink
-              className='nav-link'
-              to='/alert'
-              activeClassName='selected'
-            >
+            <NavLink className='nav-link' to='/alert'>
               <i
                 className='pi pi-bell p-text-secondary p-overlay-badge'
                 style={{ fontSize: '1.4rem' }}
               >
-                <Badge value='2'></Badge>
+                {badge !== 0 ? <Badge value={badge}></Badge> : <></>}
               </i>
             </NavLink>
           </li>
           <li className='nav-item'>
-            <NavLink
-              className='nav-link'
-              to='/'
-              role='button'
-              activeClassName='selected'
-            >
+            <NavLink className='nav-link' to='/' role='button'>
               <i className='pi pi-user' style={{ fontWeight: 'bold' }} />
             </NavLink>
           </li>
@@ -89,7 +93,7 @@ const Navbar = ({ setIsLogin }) => {
           <li className='nav-item'>
             <button
               className='nav-link'
-              onClick={() => confirmaLogout()}
+              onClick={(e) => confirmaLogout(e)}
               style={{
                 border: '0',
                 color: 'red',
@@ -102,7 +106,7 @@ const Navbar = ({ setIsLogin }) => {
           </li>
         </ul>
       </nav>
-      ;
+      <div style={{ color: 'white' }}>.</div>
     </div>
   );
 };

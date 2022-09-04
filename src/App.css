@@ -110,8 +110,12 @@
 /* //TODO: Active Siderbar*/
 .sidebar-light-primary .nav-sidebar .nav-item .nav-link.active{
 background-color: #6365f157;
-box-shadow: none;
+border-radius:0.5rem;
 }
+.sidebar-light-primary .nav-sidebar .nav-item .nav-link:hover{
+  background-color: #6365f157 !important;
+  border-radius:0.5rem;
+  }
 /* //TODO:  Active nav porfile*/
 .navbar-light .navbar-nav .nav-link.active{
   background-color: #6365f157;
@@ -121,6 +125,10 @@ box-shadow: none;
 .p-dialog-header{
   background-color: #f4f6f9 !important;
 }
+.p-toolbar-group-left{
+  width:85% !important
+}
+
 /* //TODO: Siderbar responsive */
   @media screen and (max-width: 992px){
     .main-sidebar{

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import AlertChanges from '../template/Navbar';
 import { Chart } from 'primereact/chart';
-const Dashboard = () => {
+const Dashboard = ({ setIsLogin }) => {
   const [basicData] = useState({
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
     datasets: [
@@ -159,6 +160,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
+        <AlertChanges key={'0'} setIsLogin={setIsLogin} />
       </section>
     </div>
   );

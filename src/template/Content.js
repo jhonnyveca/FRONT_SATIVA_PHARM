@@ -11,7 +11,7 @@ import axios from 'axios';
 import Alert from '../components/Alert';
 import Preloader from './Preloader';
 
-const Content = () => {
+const Content = ({ setIsLogin }) => {
   const baseUrl = `${URI}/users`;
   const idUser = localStorage.getItem('id');
   const token = localStorage.getItem('token');
@@ -29,31 +29,31 @@ const Content = () => {
   let routes = [
     {
       path: '/home',
-      element: <Dashboard />,
+      element: <Dashboard setIsLogin={setIsLogin} />,
     },
     {
       path: '/users',
-      element: <Users />,
+      element: <Users setIsLogin={setIsLogin} />,
     },
     {
       path: '/',
-      element: <Profile />,
+      element: <Profile setIsLogin={setIsLogin} />,
     },
     {
       path: '*',
-      element: <Notfound />,
+      element: <Notfound setIsLogin={setIsLogin} />,
     },
     {
       path: '/agenda',
-      element: <Agenda />,
+      element: <Agenda setIsLogin={setIsLogin} />,
     },
     {
       path: '/patient',
-      element: <Patient />,
+      element: <Patient setIsLogin={setIsLogin} />,
     },
     {
       path: '/alert',
-      element: <Alert />,
+      element: <Alert setIsLogin={setIsLogin} />,
     },
   ];
   let admin = useRoutes(routes);

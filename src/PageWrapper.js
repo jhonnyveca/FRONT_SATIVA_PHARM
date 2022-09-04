@@ -11,7 +11,7 @@ const PageWrapper = ({ setIsLogin }) => {
       <BrowserRouter>
         <Navbar setIsLogin={setIsLogin} />
         <Sidebar />
-        <Content />
+        <Content setIsLogin={setIsLogin} />
       </BrowserRouter>
     </div>
   );
