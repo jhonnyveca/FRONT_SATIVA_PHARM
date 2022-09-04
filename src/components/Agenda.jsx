@@ -5,11 +5,11 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import resourceTimelinePlugin from '@fullcalendar/resource-timeline';
-
+import AlertChanges from '../template/Navbar';
 import AgendaModal from './modals/AgendaModal';
 import { Button } from 'primereact/button';
 
-const Agenda = () => {
+const Agenda = ({ setIsLogin }) => {
   const [agendaDialog, setAgendaDialog] = useState(false);
   const [date, setDate] = useState();
 
@@ -183,6 +183,7 @@ const Agenda = () => {
           agendaDialogFooter={agendaDialogFooter}
           date={date}
         />
+        <AlertChanges key={'0'} setIsLogin={setIsLogin} />
       </section>
     </div>
   );

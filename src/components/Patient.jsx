@@ -5,12 +5,13 @@ import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
 import { InputText } from 'primereact/inputtext';
+import AlertChanges from '../template/Navbar';
 import URL from '../config/Api';
 import PatientModal from './modals/PatientModal';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
-const Patient = () => {
+const Patient = ({ setIsLogin }) => {
   const baseUrl = `${URL}/patients`;
 
   let emptyPatient = {
@@ -149,7 +150,7 @@ const Patient = () => {
     );
     toast.current.show({
       severity: 'success',
-      summary: 'Successful',
+      summary: 'Exitosa',
       detail: 'Paciente Editado',
       life: 3000,
     });
@@ -376,6 +377,7 @@ const Patient = () => {
                 onInputChange={onInputChange}
                 patientDialogFooter={patientDialogFooter}
               />
+              <AlertChanges key={'0'} setIsLogin={setIsLogin} />
             </div>
           </div>
         </div>
